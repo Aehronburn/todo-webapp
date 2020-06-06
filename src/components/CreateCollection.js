@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Typography, Input, Form, Divider } from "antd";
+import { Card, Typography, Input, Divider } from "antd";
 import { CloseOutlined, CheckOutlined } from "@ant-design/icons";
 
 const { Text } = Typography;
@@ -11,7 +11,9 @@ const CreateCollection = () => {
       hoverable
       actions={[<CloseOutlined />, <CheckOutlined />]}
     >
-      <Text strong>Create new</Text>
+      <Text style={styles.text} strong>
+        Create new
+      </Text>
       <Divider />
       <Input placeholder="name" />
     </Card>
@@ -21,6 +23,9 @@ const CreateCollection = () => {
 const styles = {
   card: {
     textAlign: "center",
+  },
+  text: {
+    color: "rgb(33,148,255)",
   },
 };
 

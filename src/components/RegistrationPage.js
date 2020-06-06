@@ -1,25 +1,37 @@
-import React, { useState } from "react";
-import { Layout, Typography, Card, Form, Input, Button } from "antd";
-import image from "../res/Waihou.png";
+import React, { useContext, useState } from "react";
+import HeaderTitle from "./HeaderTitle";
+import { Link, Redirect } from "react-router-dom";
+import { Layout, Card, Form, Input, Button, Space, Alert } from "antd";
+import image from "../res/Mataura.png";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import { UserContext } from "../contexts/UserContext";
+import { TokenContext } from "../contexts/TokenContext";
 
 const { Header, Content } = Layout;
-const { Title } = Typography;
 
-const RegistrationPage = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+const RegistrationPage = ({ authenticated }) => {
+  const { username, password } = useContext(UserContext);
+  const [usernameValue, setUsernameValue] = username;
+  const [passwordValue, setPasswordValue] = password;
+  const [token, setToken] = useContext(TokenContext);
+  const [error, setError] = useState(false);
+  const [authenticate, setAuthenticate] = authenticated;
+
+  const updateError = () => {
+    setError(!error);
+  };
 
   const updateUsername = (e) => {
-    setUsername(e.target.value);
+    setUsernameValue(e.target.value);
   };
 
   const updatePassword = (e) => {
-    setPassword(e.target.value);
+    setPasswordValue(e.target.value);
   };
 
   const submit = async (e) => {
-    e.preventDefault();
+    let username = usernameValue;
+    let password = passwordValue;
     const response = await fetch(
       "https://366q1oq2q5.execute-api.eu-south-1.amazonaws.com/dev/api/register",
       {
@@ -29,22 +41,32 @@ const RegistrationPage = () => {
     );
     if (response.ok) {
       console.log("ok");
+      const loginResponse = await fetch(
+        "https://366q1oq2q5.execute-api.eu-south-1.amazonaws.com/dev/api/login",
+        {
+          method: "POST",
+          body: JSON.stringify({ username, password }),
+        }
+      );
+      let data = await loginResponse.json();
+      setToken(data.token);
+      setAuthenticate(true);
     } else {
       console.log("error");
+      updateError();
     }
   };
 
   return (
     <Layout>
+      {authenticate ? <Redirect to="/home" /> : ""}
       <Header style={styles.header}>
-        <Title style={styles.title} level={3}>
-          Todo
-        </Title>
+        <HeaderTitle title="Registration" />
       </Header>
       <Layout>
         <Content style={styles.content}>
           <Card title="Registration" style={styles.card}>
-            <Form>
+            <Form onFinish={submit}>
               <Form.Item
                 name="username"
                 rules={[{ required: true, message: "enter your username" }]}
@@ -63,10 +85,23 @@ const RegistrationPage = () => {
                 />
               </Form.Item>
               <Form.Item>
-                <Button type="primary" onClick={submit}>
-                  Register
-                </Button>
+                <Space direction="vertical">
+                  <Button type="primary" htmlType="submit">
+                    Register
+                  </Button>
+                  {error ? (
+                    <Alert
+                      showIcon
+                      closable
+                      type="warning"
+                      message="username already taken"
+                    />
+                  ) : (
+                    ""
+                  )}
+                </Space>
               </Form.Item>
+              <Link to="/">login</Link>
             </Form>
           </Card>
         </Content>
@@ -92,7 +127,7 @@ const styles = {
     marginTop: "16px",
   },
   card: {
-    maxWidth: "300px",
+    maxWidth: "320px",
     margin: "auto",
     position: "relative",
     top: "50%",

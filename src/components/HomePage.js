@@ -1,23 +1,39 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Collection from "./Collection";
 import CreateCollection from "./CreateCollection";
-import { Layout, Typography, Row, Col } from "antd";
-import image from "../res/Mohaka.png";
+import { Layout, Row, Col, Modal } from "antd";
+import image from "../res/Doubs.png";
+import HeaderTitle from "./HeaderTitle";
+import { UserContext } from "../contexts/UserContext";
+import { TokenContext } from "../contexts/TokenContext";
 
 const { Header, Content } = Layout;
-const { Title } = Typography;
 
 const HomePage = () => {
-  const [collections, setCollections] = useState([
-    { title: "Spesa", number: 1 },
-    { title: "Spesa", number: 2 },
-    { title: "Spesa", number: 3 },
-    { title: "Spesa", number: 4 },
-    { title: "Spesa", number: 5 },
-    { title: "Spesa", number: 6 },
-  ]);
-
+  const [token, setToken] = useContext(TokenContext);
+  const [collections, setCollections] = useState([]);
+  const { username } = useContext(UserContext);
+  const [usernameValue, setUsernameValue] = username;
   const [grid, setGrid] = useState([]);
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        let response = await fetch(
+          "https://366q1oq2q5.execute-api.eu-south-1.amazonaws.com/dev/api/collections",
+          {
+            method: "GET",
+            headers: { Authorization: token },
+          }
+        );
+        let fetchedData = await response.json();
+        setCollections(fetchedData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getData();
+  }, []);
 
   useEffect(() => {
     setGrid(createGrid(collections));
@@ -43,9 +59,7 @@ const HomePage = () => {
   return (
     <Layout>
       <Header style={styles.header}>
-        <Title style={styles.title} level={3}>
-          Home
-        </Title>
+        <HeaderTitle title="Home" username={usernameValue} />
       </Header>
       <Content style={styles.content}>
         {grid.map((elements, index) => {
@@ -59,8 +73,9 @@ const HomePage = () => {
                 return (
                   <Col key={index} span={6}>
                     <Collection
-                      title={element.title}
-                      number={element.number}
+                      id={element._id}
+                      name={element.name}
+                      number={element.count}
                     ></Collection>
                   </Col>
                 );

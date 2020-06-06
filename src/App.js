@@ -1,15 +1,56 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import LoginPage from "./components/LoginPage";
-import "antd/dist/antd.css";
+import RegistrationPage from "./components/RegistrationPage";
+import PrivateRoute from "./components/PrivateRoute";
 import TokenContextProvider from "./contexts/TokenContext";
 import HomePage from "./components/HomePage";
-import RegistrationPage from "./components/RegistrationPage";
+import UserContextProvider from "./contexts/UserContext";
+
+import "antd/dist/antd.css";
 
 const App = () => {
+  const [authenticated, setAuthenticated] = useState(false);
+
+  useEffect(() => {
+    console.log(authenticated);
+  }, [authenticated]);
+
   return (
     <div className="App">
       <TokenContextProvider>
-        <HomePage />
+        <UserContextProvider>
+          <BrowserRouter>
+            <Switch>
+              <Route
+                exact
+                path="/"
+                render={(props) => (
+                  <LoginPage
+                    {...props}
+                    authenticated={[authenticated, setAuthenticated]}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/register"
+                render={(props) => (
+                  <RegistrationPage
+                    {...props}
+                    authenticated={[authenticated, setAuthenticated]}
+                  />
+                )}
+              />
+              <PrivateRoute
+                exact
+                path="/home"
+                authenticated={authenticated}
+                component={HomePage}
+              />
+            </Switch>
+          </BrowserRouter>
+        </UserContextProvider>
       </TokenContextProvider>
     </div>
   );
