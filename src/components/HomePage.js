@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import Collection from "./Collection";
 import CreateCollection from "./CreateCollection";
-import { Layout, Row, Col, Modal } from "antd";
+import { Layout, Row, Col } from "antd";
 import image from "../res/Doubs.png";
 import HeaderTitle from "./HeaderTitle";
 import { UserContext } from "../contexts/UserContext";
@@ -56,6 +56,10 @@ const HomePage = () => {
     return rows;
   };
 
+  const eliminate = (id) => {
+    setCollections(collections.filter((collection) => collection._id !== id));
+  };
+
   return (
     <Layout>
       <Header style={styles.header}>
@@ -76,6 +80,7 @@ const HomePage = () => {
                       id={element._id}
                       name={element.name}
                       number={element.count}
+                      eliminate={eliminate}
                     ></Collection>
                   </Col>
                 );
