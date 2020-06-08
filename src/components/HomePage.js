@@ -15,6 +15,7 @@ const HomePage = () => {
   const { username } = useContext(UserContext);
   const [usernameValue, setUsernameValue] = username;
   const [grid, setGrid] = useState([]);
+  const [adding, setAdding] = useState(false);
 
   useEffect(() => {
     const getData = async () => {
@@ -33,7 +34,7 @@ const HomePage = () => {
       }
     };
     getData();
-  }, []);
+  }, [adding]);
 
   useEffect(() => {
     setGrid(createGrid(collections));
@@ -56,8 +57,38 @@ const HomePage = () => {
     return rows;
   };
 
-  const eliminate = (id) => {
+  const eliminate = async (id) => {
     setCollections(collections.filter((collection) => collection._id !== id));
+    try {
+      await fetch(
+        "https://366q1oq2q5.execute-api.eu-south-1.amazonaws.com/dev/api/collections/" +
+          id,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const createNew = async (name) => {
+    try {
+      await fetch(
+        "https://366q1oq2q5.execute-api.eu-south-1.amazonaws.com/dev/api/collections/",
+        {
+          method: "POST",
+          headers: { Authorization: token },
+          body: JSON.stringify({ name }),
+        }
+      );
+      setAdding(!adding);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -90,7 +121,7 @@ const HomePage = () => {
         })}
         <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }} style={styles.row}>
           <Col span={6}>
-            <CreateCollection />
+            <CreateCollection createNew={createNew} />
           </Col>
         </Row>
       </Content>

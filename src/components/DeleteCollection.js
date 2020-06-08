@@ -1,5 +1,7 @@
 import React from "react";
-import { Modal } from "antd";
+import { Modal, Typography } from "antd";
+
+const { Text } = Typography;
 
 const DeleteCollection = ({ id, isDeleting, toggleDelete, eliminate }) => {
   const destroy = () => {
@@ -7,11 +9,13 @@ const DeleteCollection = ({ id, isDeleting, toggleDelete, eliminate }) => {
   };
   return (
     <Modal
-      title="Are you sure to delete collection?"
+      title="Delete collection"
       visible={isDeleting}
       onCancel={toggleDelete}
       onOk={destroy}
-    ></Modal>
+    >
+      <Text>Are you sure?</Text>
+    </Modal>
   );
 };
 

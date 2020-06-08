@@ -16,6 +16,7 @@ const RegistrationPage = ({ authenticated }) => {
   const [token, setToken] = useContext(TokenContext);
   const [error, setError] = useState(false);
   const [authenticate, setAuthenticate] = authenticated;
+  const [isLoading, setIsLoading] = useState(false);
 
   const updateError = () => {
     setError(!error);
@@ -30,6 +31,7 @@ const RegistrationPage = ({ authenticated }) => {
   };
 
   const submit = async (e) => {
+    setIsLoading(true);
     let username = usernameValue;
     let password = passwordValue;
     const response = await fetch(
@@ -48,6 +50,7 @@ const RegistrationPage = ({ authenticated }) => {
       console.log("error");
       updateError();
     }
+    setIsLoading(false);
   };
 
   return (
@@ -79,7 +82,7 @@ const RegistrationPage = ({ authenticated }) => {
               </Form.Item>
               <Form.Item>
                 <Space direction="vertical">
-                  <Button type="primary" htmlType="submit">
+                  <Button type="primary" htmlType="submit" loading={isLoading}>
                     Login
                   </Button>
                   {error ? (

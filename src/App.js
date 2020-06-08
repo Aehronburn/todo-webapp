@@ -6,19 +6,20 @@ import PrivateRoute from "./components/PrivateRoute";
 import TokenContextProvider from "./contexts/TokenContext";
 import HomePage from "./components/HomePage";
 import UserContextProvider from "./contexts/UserContext";
+import TodoPage from "./components/TodoPage";
 
 import "antd/dist/antd.css";
 
 const App = () => {
-  const [authenticated, setAuthenticated] = useState(false);
+	const [authenticated, setAuthenticated] = useState(false);
 
-  useEffect(() => {
-    console.log(authenticated);
-  }, [authenticated]);
+	useEffect(() => {
+		console.log(authenticated);
+	}, [authenticated]);
 
-  return (
-    <div className="App">
-      <TokenContextProvider>
+	return (
+		<div className="App">
+			{/* <TokenContextProvider>
         <UserContextProvider>
           <BrowserRouter>
             <Switch>
@@ -51,9 +52,10 @@ const App = () => {
             </Switch>
           </BrowserRouter>
         </UserContextProvider>
-      </TokenContextProvider>
-    </div>
-  );
+      </TokenContextProvider> */}
+			<TodoPage collection="ciao" username="ciao" />
+		</div>
+	);
 };
 
 export default App;
