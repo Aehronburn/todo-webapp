@@ -7,7 +7,6 @@ import PrivateRoute from "./components/PrivateRoute";
 import TokenContextProvider from "./contexts/TokenContext";
 import HomePage from "./components/HomePage";
 import UserContextProvider from "./contexts/UserContext";
-
 import "antd/dist/antd.css";
 
 const App = () => {
