@@ -8,8 +8,7 @@ import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
 const { Text, Link } = Typography;
 
-const Collection = ({ id, name, number, eliminate, username }) => {
-	const [token, setToken] = useContext(TokenContext);
+const Collection = ({ id, name, number, eliminate, username, save }) => {
 	const [cardId, setCardId] = useState(id);
 	const [cardTitle, setCardTitle] = useState(name);
 	const [cardCount, setCardCount] = useState(number);
@@ -39,25 +38,8 @@ const Collection = ({ id, name, number, eliminate, username }) => {
 	};
 
 	useEffect(() => {
-		const updateTitle = async (id, name) => {
-			try {
-				let response = await fetch(
-					"https://366q1oq2q5.execute-api.eu-south-1.amazonaws.com/dev/api/collections/" +
-						id,
-					{
-						method: "PATCH",
-						headers: {
-							Authorization: token,
-						},
-						body: JSON.stringify({ name }),
-					}
-				);
-			} catch (error) {
-				console.log(error);
-			}
-		};
-		updateTitle(cardId, cardTitle);
-	}, [cardTitle]);
+		save(cardId, cardTitle);
+	}, [isModifying]);
 
 	return (
 		<>

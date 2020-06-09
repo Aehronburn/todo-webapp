@@ -13,10 +13,6 @@ import "antd/dist/antd.css";
 const App = () => {
 	const [authenticated, setAuthenticated] = useState(false);
 
-	useEffect(() => {
-		console.log(authenticated);
-	}, [authenticated]);
-
 	return (
 		<div className="App">
 			<TokenContextProvider>
@@ -49,10 +45,11 @@ const App = () => {
 								authenticated={authenticated}
 								component={HomePage}
 							/>
-							<Route
+							<PrivateRoute
 								exact
 								path="/todo"
-								render={(props) => <TodoPage {...props} />}
+								authenticated={authenticated}
+								component={TodoPage}
 							/>
 						</Switch>
 					</BrowserRouter>

@@ -91,6 +91,24 @@ const HomePage = () => {
 		}
 	};
 
+	const save = async (id, name) => {
+		try {
+			await fetch(
+				"https://366q1oq2q5.execute-api.eu-south-1.amazonaws.com/dev/api/collections/" +
+					id,
+				{
+					method: "PATCH",
+					headers: {
+						Authorization: token,
+					},
+					body: JSON.stringify({ name: name }),
+				}
+			);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	return (
 		<Layout>
 			<Header style={styles.header}>
@@ -113,6 +131,7 @@ const HomePage = () => {
 											number={element.count}
 											eliminate={eliminate}
 											username={usernameValue}
+											save={save}
 										></Collection>
 									</Col>
 								);

@@ -40,7 +40,6 @@ const RegistrationPage = ({ authenticated }) => {
 			}
 		);
 		if (response.ok) {
-			console.log("ok");
 			const loginResponse = await fetch(
 				"https://366q1oq2q5.execute-api.eu-south-1.amazonaws.com/dev/api/login",
 				{

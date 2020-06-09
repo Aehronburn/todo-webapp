@@ -42,7 +42,6 @@ const RegistrationPage = ({ authenticated }) => {
 			}
 		);
 		if (response.ok) {
-			console.log("ok");
 			const data = await response.json();
 			setToken(data.token);
 			setAuthenticate(true);
