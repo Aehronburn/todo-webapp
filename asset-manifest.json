@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/todo-webapp/static/css/main.5ecd60fb.chunk.css",
+    "main.js": "/todo-webapp/static/js/main.8ff543fa.chunk.js",
+    "main.js.map": "/todo-webapp/static/js/main.8ff543fa.chunk.js.map",
+    "runtime-main.js": "/todo-webapp/static/js/runtime-main.a77fc5f3.js",
+    "runtime-main.js.map": "/todo-webapp/static/js/runtime-main.a77fc5f3.js.map",
+    "static/css/2.4deadad5.chunk.css": "/todo-webapp/static/css/2.4deadad5.chunk.css",
+    "static/js/2.cddc045f.chunk.js": "/todo-webapp/static/js/2.cddc045f.chunk.js",
+    "static/js/2.cddc045f.chunk.js.map": "/todo-webapp/static/js/2.cddc045f.chunk.js.map",
+    "index.html": "/todo-webapp/index.html",
+    "precache-manifest.0b3c912e8e6626cb1cf8213a96e96967.js": "/todo-webapp/precache-manifest.0b3c912e8e6626cb1cf8213a96e96967.js",
+    "service-worker.js": "/todo-webapp/service-worker.js",
+    "static/css/2.4deadad5.chunk.css.map": "/todo-webapp/static/css/2.4deadad5.chunk.css.map",
+    "static/css/main.5ecd60fb.chunk.css.map": "/todo-webapp/static/css/main.5ecd60fb.chunk.css.map",
+    "static/js/2.cddc045f.chunk.js.LICENSE.txt": "/todo-webapp/static/js/2.cddc045f.chunk.js.LICENSE.txt",
+    "static/media/Doubs.png": "/todo-webapp/static/media/Doubs.99d8216c.png",
+    "static/media/Mataura.png": "/todo-webapp/static/media/Mataura.f323cf2d.png",
+    "static/media/Vorderrhein.png": "/todo-webapp/static/media/Vorderrhein.73488154.png",
+    "static/media/Waihou.png": "/todo-webapp/static/media/Waihou.16e7b69d.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a77fc5f3.js",
+    "static/css/2.4deadad5.chunk.css",
+    "static/js/2.cddc045f.chunk.js",
+    "static/css/main.5ecd60fb.chunk.css",
+    "static/js/main.8ff543fa.chunk.js"
+  ]
+}
