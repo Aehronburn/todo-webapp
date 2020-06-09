@@ -1,29 +1,29 @@
 {
   "files": {
-    "main.css": "http://aehronburn.github.io/todo-webapp/static/css/main.5ecd60fb.chunk.css",
-    "main.js": "http://aehronburn.github.io/todo-webapp/static/js/main.ebaa52a0.chunk.js",
-    "main.js.map": "http://aehronburn.github.io/todo-webapp/static/js/main.ebaa52a0.chunk.js.map",
-    "runtime-main.js": "http://aehronburn.github.io/todo-webapp/static/js/runtime-main.cac7d454.js",
-    "runtime-main.js.map": "http://aehronburn.github.io/todo-webapp/static/js/runtime-main.cac7d454.js.map",
-    "static/css/2.4deadad5.chunk.css": "http://aehronburn.github.io/todo-webapp/static/css/2.4deadad5.chunk.css",
-    "static/js/2.45fdd10e.chunk.js": "http://aehronburn.github.io/todo-webapp/static/js/2.45fdd10e.chunk.js",
-    "static/js/2.45fdd10e.chunk.js.map": "http://aehronburn.github.io/todo-webapp/static/js/2.45fdd10e.chunk.js.map",
-    "index.html": "http://aehronburn.github.io/todo-webapp/index.html",
-    "precache-manifest.48495e6543f2a1b686f8425aeaaf8827.js": "http://aehronburn.github.io/todo-webapp/precache-manifest.48495e6543f2a1b686f8425aeaaf8827.js",
-    "service-worker.js": "http://aehronburn.github.io/todo-webapp/service-worker.js",
-    "static/css/2.4deadad5.chunk.css.map": "http://aehronburn.github.io/todo-webapp/static/css/2.4deadad5.chunk.css.map",
-    "static/css/main.5ecd60fb.chunk.css.map": "http://aehronburn.github.io/todo-webapp/static/css/main.5ecd60fb.chunk.css.map",
-    "static/js/2.45fdd10e.chunk.js.LICENSE.txt": "http://aehronburn.github.io/todo-webapp/static/js/2.45fdd10e.chunk.js.LICENSE.txt",
-    "static/media/Doubs.png": "http://aehronburn.github.io/todo-webapp/static/media/Doubs.9ec537c9.png",
-    "static/media/Mataura.png": "http://aehronburn.github.io/todo-webapp/static/media/Mataura.d3823bd1.png",
-    "static/media/Vorderrhein.png": "http://aehronburn.github.io/todo-webapp/static/media/Vorderrhein.30b4c3f4.png",
-    "static/media/Waihou.png": "http://aehronburn.github.io/todo-webapp/static/media/Waihou.5d43f3af.png"
+    "main.css": "https://aehronburn.github.io/todo-webapp/static/css/main.5ecd60fb.chunk.css",
+    "main.js": "https://aehronburn.github.io/todo-webapp/static/js/main.91086083.chunk.js",
+    "main.js.map": "https://aehronburn.github.io/todo-webapp/static/js/main.91086083.chunk.js.map",
+    "runtime-main.js": "https://aehronburn.github.io/todo-webapp/static/js/runtime-main.b5f4ed6f.js",
+    "runtime-main.js.map": "https://aehronburn.github.io/todo-webapp/static/js/runtime-main.b5f4ed6f.js.map",
+    "static/css/2.4deadad5.chunk.css": "https://aehronburn.github.io/todo-webapp/static/css/2.4deadad5.chunk.css",
+    "static/js/2.77731cdf.chunk.js": "https://aehronburn.github.io/todo-webapp/static/js/2.77731cdf.chunk.js",
+    "static/js/2.77731cdf.chunk.js.map": "https://aehronburn.github.io/todo-webapp/static/js/2.77731cdf.chunk.js.map",
+    "index.html": "https://aehronburn.github.io/todo-webapp/index.html",
+    "precache-manifest.25031a25c9740154f4ee9a75c054987a.js": "https://aehronburn.github.io/todo-webapp/precache-manifest.25031a25c9740154f4ee9a75c054987a.js",
+    "service-worker.js": "https://aehronburn.github.io/todo-webapp/service-worker.js",
+    "static/css/2.4deadad5.chunk.css.map": "https://aehronburn.github.io/todo-webapp/static/css/2.4deadad5.chunk.css.map",
+    "static/css/main.5ecd60fb.chunk.css.map": "https://aehronburn.github.io/todo-webapp/static/css/main.5ecd60fb.chunk.css.map",
+    "static/js/2.77731cdf.chunk.js.LICENSE.txt": "https://aehronburn.github.io/todo-webapp/static/js/2.77731cdf.chunk.js.LICENSE.txt",
+    "static/media/Doubs.png": "https://aehronburn.github.io/todo-webapp/static/media/Doubs.9ec537c9.png",
+    "static/media/Mataura.png": "https://aehronburn.github.io/todo-webapp/static/media/Mataura.d3823bd1.png",
+    "static/media/Vorderrhein.png": "https://aehronburn.github.io/todo-webapp/static/media/Vorderrhein.30b4c3f4.png",
+    "static/media/Waihou.png": "https://aehronburn.github.io/todo-webapp/static/media/Waihou.5d43f3af.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.cac7d454.js",
+    "static/js/runtime-main.b5f4ed6f.js",
     "static/css/2.4deadad5.chunk.css",
-    "static/js/2.45fdd10e.chunk.js",
+    "static/js/2.77731cdf.chunk.js",
     "static/css/main.5ecd60fb.chunk.css",
-    "static/js/main.ebaa52a0.chunk.js"
+    "static/js/main.91086083.chunk.js"
   ]
 }
