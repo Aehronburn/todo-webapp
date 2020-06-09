@@ -49,7 +49,11 @@ const App = () => {
 								authenticated={authenticated}
 								component={HomePage}
 							/>
-							<Route exact path="/todo" component={TodoPage} />
+							<Route
+								exact
+								path="/todo"
+								render={(props) => <TodoPage {...props} />}
+							/>
 						</Switch>
 					</BrowserRouter>
 				</UserContextProvider>

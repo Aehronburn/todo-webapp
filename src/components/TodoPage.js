@@ -4,11 +4,16 @@ import AddTodo from "./AddTodo";
 import { TokenContext } from "../contexts/TokenContext";
 import { Layout, Table, Checkbox, Typography } from "antd";
 import image from "../res/Vorderrhein.png";
+import { ArrowLeftOutlined } from "@ant-design/icons";
 
 const { Header, Content } = Layout;
 const { Link } = Typography;
 
-const TodoPage = ({ collection, username }) => {
+const TodoPage = ({
+	location: {
+		state: { collection, username, collectionName },
+	},
+}) => {
 	const [data, setData] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [token, setToken] = useContext(TokenContext);
@@ -29,7 +34,7 @@ const TodoPage = ({ collection, username }) => {
 				console.log(error);
 			}
 		};
-		getData("5eddfa801427cb000893df54");
+		getData(collection);
 	}, [isLoading]);
 
 	const submit = async (collection, title, user) => {
@@ -55,11 +60,59 @@ const TodoPage = ({ collection, username }) => {
 		}
 	};
 
+	const setCompleted = async (e) => {
+		const id = e.target.id;
+		let newArray = [...data];
+		let index = newArray.findIndex((x) => x._id === id);
+		let newState = !newArray[index].completed;
+		newArray[index].completed = newState;
+		setData(newArray);
+
+		try {
+			await fetch(
+				"https://366q1oq2q5.execute-api.eu-south-1.amazonaws.com/dev/api/todos/" +
+					id,
+				{
+					method: "PATCH",
+					headers: {
+						Authorization: token,
+					},
+					body: JSON.stringify({ completed: newState }),
+				}
+			);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const deleteTodo = async (e) => {
+		const id = e.target.id;
+		let newArray = data.filter((element) => {
+			return element._id !== id;
+		});
+		setData(newArray);
+		try {
+			await fetch(
+				"https://366q1oq2q5.execute-api.eu-south-1.amazonaws.com/dev/api/todos/" +
+					id,
+				{
+					method: "DELETE",
+					headers: {
+						Authorization: token,
+					},
+				}
+			);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	const columns = [
 		{
 			title: "Task",
 			dataIndex: "title",
 			key: "title",
+			width: "35%",
 		},
 		{
 			title: "Author",
@@ -72,13 +125,18 @@ const TodoPage = ({ collection, username }) => {
 			key: "date",
 			render: (date) => new Date(date).toLocaleString("it-IT"),
 			sorter: (a, b) => new Date(a.date) - new Date(b.date),
+			width: "20%",
 		},
 		{
 			title: "Done",
 			dataIndex: "completed",
 			key: "completed",
 			render: (completed, element) => (
-				<Checkbox id={element._id} checked={completed} />
+				<Checkbox
+					id={element._id}
+					checked={element.completed}
+					onChange={setCompleted}
+				/>
 			),
 			filters: [
 				{
@@ -92,25 +150,35 @@ const TodoPage = ({ collection, username }) => {
 			],
 			filterMultiple: false,
 			onFilter: (value, record) => record.completed === value,
+			width: "10%",
 		},
 		{
 			title: "Action",
 			dataIndex: "_id",
 			key: "_id",
-			render: (_id) => <Link id={_id}>delete</Link>,
+			render: (_id) => (
+				<Link id={_id} onClick={deleteTodo}>
+					delete
+				</Link>
+			),
+			width: "10%",
 		},
 	];
 
 	return (
 		<Layout style={styles.layout}>
 			<Header style={styles.header}>
-				<HeaderTitle title={collection} username={username} />
+				<HeaderTitle
+					title={collectionName}
+					username={username}
+					isTodo={<ArrowLeftOutlined />}
+				/>
 			</Header>
 			<Content style={styles.content}>
 				<AddTodo
 					submit={submit}
-					collection="5eddfa801427cb000893df54"
-					user="zhuyihui"
+					collection={collection}
+					user={username}
 					isLoading={isLoading}
 				/>
 				<Table

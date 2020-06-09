@@ -6,15 +6,16 @@ import { TokenContext } from "../contexts/TokenContext";
 import { Card, Typography, Divider } from "antd";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
-const { Text } = Typography;
+const { Text, Link } = Typography;
 
-const Collection = ({ id, name, number, eliminate }) => {
+const Collection = ({ id, name, number, eliminate, username }) => {
 	const [token, setToken] = useContext(TokenContext);
 	const [cardId, setCardId] = useState(id);
 	const [cardTitle, setCardTitle] = useState(name);
 	const [cardCount, setCardCount] = useState(number);
 	const [isModifying, setIsModifying] = useState(false);
 	const [isDeleting, setIsDeleting] = useState(false);
+	const [isOpening, setIsOpening] = useState(false);
 
 	const toggle = () => {
 		setIsModifying(!isModifying);
@@ -30,6 +31,11 @@ const Collection = ({ id, name, number, eliminate }) => {
 
 	const deleteCard = () => {
 		toggleDelete();
+	};
+
+	const enterTodo = (e) => {
+		let collectionId = e.target.id;
+		setIsOpening(true);
 	};
 
 	useEffect(() => {
@@ -55,10 +61,21 @@ const Collection = ({ id, name, number, eliminate }) => {
 
 	return (
 		<>
+			{isOpening ? (
+				<Redirect
+					to={{
+						pathname: "/todo",
+						state: {
+							collection: cardId,
+							username: username,
+							collectionName: cardTitle,
+						},
+					}}
+				/>
+			) : (
+				""
+			)}
 			<Card
-				onClick={() => {
-					return <Redirect to="/todo" />;
-				}}
 				style={styles.card}
 				hoverable
 				actions={[
@@ -66,7 +83,9 @@ const Collection = ({ id, name, number, eliminate }) => {
 					<DeleteOutlined onClick={deleteCard} />,
 				]}
 			>
-				<Text strong>{cardTitle}</Text>
+				<Link id={cardId} onClick={enterTodo}>
+					{cardTitle}
+				</Link>
 				<Divider />
 				<Text type="secondary">{cardCount}</Text>
 			</Card>

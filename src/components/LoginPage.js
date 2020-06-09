@@ -55,9 +55,9 @@ const RegistrationPage = ({ authenticated }) => {
 
 	return (
 		<Layout>
-			{authenticate ? <Redirect to="/todo" /> : ""}
+			{authenticate ? <Redirect to="/home" /> : ""}
 			<Header style={styles.header}>
-				<HeaderTitle title="Login" />
+				<HeaderTitle title="Login" isTodo={false} />
 			</Header>
 			<Layout>
 				<Content style={styles.content}>
