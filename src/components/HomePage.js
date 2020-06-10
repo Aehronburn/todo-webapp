@@ -137,7 +137,6 @@ const HomePage = ({ logout }) => {
 											eliminate={eliminate}
 											username={usernameValue}
 											save={save}
-											logout={logout}
 										></Collection>
 									</Col>
 								);

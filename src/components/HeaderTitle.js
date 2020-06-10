@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { PageHeader, Typography, Avatar, Menu, Dropdown, Space } from "antd";
 import { UserOutlined, DownOutlined } from "@ant-design/icons";
 import { Redirect } from "react-router-dom";
@@ -33,14 +33,18 @@ const HeaderTitle = ({ title, username, isTodo, logout }) => {
 								}}
 								icon={<UserOutlined />}
 							/>
-							<Dropdown overlay={menu}>
-								<Text>
-									<Space>
-										{username}
-										<DownOutlined />
-									</Space>
-								</Text>
-							</Dropdown>
+							{logout != undefined ? (
+								<Dropdown overlay={menu}>
+									<Text>
+										<Space>
+											{username}
+											<DownOutlined />
+										</Space>
+									</Text>
+								</Dropdown>
+							) : (
+								<Text>{username}</Text>
+							)}
 						</>
 					) : (
 						""

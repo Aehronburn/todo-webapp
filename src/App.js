@@ -45,16 +45,15 @@ const App = () => {
 							<PrivateRoute
 								exact
 								path="/home"
+								component={HomePage}
 								authenticated={authenticated}
 								logout={logout}
-								component={HomePage}
 							/>
 							<PrivateRoute
 								exact
 								path="/todo"
-								authenticated={authenticated}
-								logout={logout}
 								component={TodoPage}
+								authenticated={authenticated}
 							/>
 						</Switch>
 					</BrowserRouter>
