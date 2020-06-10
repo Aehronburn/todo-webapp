@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
+import { TokenContext } from "../contexts/TokenContext";
 import { PageHeader, Typography, Avatar, Menu, Dropdown, Space } from "antd";
 import { UserOutlined, DownOutlined } from "@ant-design/icons";
 import { Redirect } from "react-router-dom";
@@ -7,6 +8,7 @@ const { Text } = Typography;
 
 const HeaderTitle = ({ title, username, isTodo, logout }) => {
 	const [isClicked, setIsClicked] = useState(false);
+	const [token, setToken] = useContext(TokenContext);
 
 	const menu = (
 		<Menu>
@@ -25,7 +27,7 @@ const HeaderTitle = ({ title, username, isTodo, logout }) => {
 				style={styles.title}
 				title={title}
 				extra={
-					username ? (
+					token ? (
 						<>
 							<Avatar
 								style={{
