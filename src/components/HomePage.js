@@ -9,7 +9,7 @@ import { TokenContext } from "../contexts/TokenContext";
 
 const { Header, Content } = Layout;
 
-const HomePage = () => {
+const HomePage = ({ logout }) => {
 	const [token, setToken] = useContext(TokenContext);
 	const [collections, setCollections] = useState([]);
 	const { username } = useContext(UserContext);
@@ -112,7 +112,12 @@ const HomePage = () => {
 	return (
 		<Layout>
 			<Header style={styles.header}>
-				<HeaderTitle title="Home" username={usernameValue} isTodo={false} />
+				<HeaderTitle
+					title="Home"
+					username={usernameValue}
+					isTodo={false}
+					logout={logout}
+				/>
 			</Header>
 			<Content style={styles.content}>
 				{grid.map((elements, index) => {
@@ -132,6 +137,7 @@ const HomePage = () => {
 											eliminate={eliminate}
 											username={usernameValue}
 											save={save}
+											logout={logout}
 										></Collection>
 									</Col>
 								);

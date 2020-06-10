@@ -8,7 +8,15 @@ import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
 const { Text, Link } = Typography;
 
-const Collection = ({ id, name, number, eliminate, username, save }) => {
+const Collection = ({
+	id,
+	name,
+	number,
+	eliminate,
+	username,
+	save,
+	logout,
+}) => {
 	const [cardId, setCardId] = useState(id);
 	const [cardTitle, setCardTitle] = useState(name);
 	const [cardCount, setCardCount] = useState(number);
@@ -51,6 +59,7 @@ const Collection = ({ id, name, number, eliminate, username, save }) => {
 							collection: cardId,
 							username: username,
 							collectionName: cardTitle,
+							logout: logout,
 						},
 					}}
 				/>

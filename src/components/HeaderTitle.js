@@ -1,12 +1,21 @@
 import React, { useState } from "react";
-import { PageHeader, Typography, Avatar } from "antd";
-import { UserOutlined } from "@ant-design/icons";
+import { PageHeader, Typography, Avatar, Menu, Dropdown, Space } from "antd";
+import { UserOutlined, DownOutlined } from "@ant-design/icons";
 import { Redirect } from "react-router-dom";
 
 const { Text } = Typography;
 
-const HeaderTitle = ({ title, username, isTodo }) => {
+const HeaderTitle = ({ title, username, isTodo, logout }) => {
 	const [isClicked, setIsClicked] = useState(false);
+
+	const menu = (
+		<Menu>
+			<Menu.Item danger>
+				<a onClick={() => logout()}>Logout</a>
+			</Menu.Item>
+		</Menu>
+	);
+
 	return (
 		<>
 			{isClicked ? <Redirect to="/home" /> : ""}
@@ -24,7 +33,14 @@ const HeaderTitle = ({ title, username, isTodo }) => {
 								}}
 								icon={<UserOutlined />}
 							/>
-							<Text type="secondary">{username}</Text>
+							<Dropdown overlay={menu}>
+								<Text>
+									<Space>
+										{username}
+										<DownOutlined />
+									</Space>
+								</Text>
+							</Dropdown>
 						</>
 					) : (
 						""

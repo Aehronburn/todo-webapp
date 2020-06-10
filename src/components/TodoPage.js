@@ -11,7 +11,7 @@ const { Link } = Typography;
 
 const TodoPage = ({
 	location: {
-		state: { collection, username, collectionName },
+		state: { collection, username, collectionName, logout },
 	},
 }) => {
 	const [data, setData] = useState([]);
@@ -172,6 +172,7 @@ const TodoPage = ({
 					title={collectionName}
 					username={username}
 					isTodo={<ArrowLeftOutlined />}
+					logout={logout}
 				/>
 			</Header>
 			<Content style={styles.content}>

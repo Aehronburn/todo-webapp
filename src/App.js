@@ -12,6 +12,10 @@ import "antd/dist/antd.css";
 const App = () => {
 	const [authenticated, setAuthenticated] = useState(false);
 
+	const logout = () => {
+		setAuthenticated(false);
+	};
+
 	return (
 		<div className="App">
 			<TokenContextProvider>
@@ -42,12 +46,14 @@ const App = () => {
 								exact
 								path="/home"
 								authenticated={authenticated}
+								logout={logout}
 								component={HomePage}
 							/>
 							<PrivateRoute
 								exact
 								path="/todo"
 								authenticated={authenticated}
+								logout={logout}
 								component={TodoPage}
 							/>
 						</Switch>

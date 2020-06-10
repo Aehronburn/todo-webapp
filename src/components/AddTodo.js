@@ -10,7 +10,6 @@ const AddTodo = ({ submit, collection, user, isLoading }) => {
 
 	const finish = () => {
 		submit(collection, name, user);
-		setName("");
 	};
 
 	return (
