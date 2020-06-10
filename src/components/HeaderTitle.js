@@ -33,18 +33,14 @@ const HeaderTitle = ({ title, username, isTodo, logout }) => {
 								}}
 								icon={<UserOutlined />}
 							/>
-							{typeof logout != "undefined" ? (
-								<Dropdown overlay={menu}>
-									<Text>
-										<Space>
-											{username}
-											<DownOutlined />
-										</Space>
-									</Text>
-								</Dropdown>
-							) : (
-								<Text>{username}</Text>
-							)}
+							<Dropdown overlay={menu}>
+								<Text>
+									<Space>
+										{username}
+										<DownOutlined />
+									</Space>
+								</Text>
+							</Dropdown>
 						</>
 					) : (
 						""

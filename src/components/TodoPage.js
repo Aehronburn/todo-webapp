@@ -11,7 +11,8 @@ const { Link } = Typography;
 
 const TodoPage = ({
 	location: {
-		state: { collection, username, collectionName, logout },
+		state: { collection, username, collectionName },
+		logout: logout,
 	},
 }) => {
 	const [data, setData] = useState([]);

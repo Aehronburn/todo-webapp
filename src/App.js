@@ -54,6 +54,7 @@ const App = () => {
 								path="/todo"
 								component={TodoPage}
 								authenticated={authenticated}
+								logout={logout}
 							/>
 						</Switch>
 					</BrowserRouter>
